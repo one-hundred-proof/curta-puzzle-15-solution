@@ -8,9 +8,10 @@ This puzzle was fiendishly difficult. Each time I thought I had it cracked a new
 
 2. That `ERC20` and `ERC721` both have a `transferFrom` function with the same _types_ in the signature, even though the third parameter is an `amount` for ERC20 and a `tokenId` for ERC721. Funnily enough I had actually scene this before in [Code4rena's Putty contest](https://code4rena.com/reports/2022-06-putty).
 
-See Zach's walkthrough [here](https://twitter.com/zachobront/status/1688247687613743105).
-
 Cumulatively, I spent nearly 12 hours on this puzzle and, because I started so late, didn't manage to make the deadline.
+
+See Zach's walkthrough [here](https://twitter.com/zachobront/status/1688247687613743105). He says it better than I can.
+
 
 ## Running the PoC
 
