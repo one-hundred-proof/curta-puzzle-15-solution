@@ -45,7 +45,7 @@ contract Attack {
       toOverwrite = billyTheBullOwner;
       return _justGetMagicFlag();
     } else {
-      return abi.encode(keccak256(abi.encode(uint256(666))));
+      return abi.encode(keccak256(abi.encode(uint256(666)))); // just return some random magic flag this time
     }
   }
 

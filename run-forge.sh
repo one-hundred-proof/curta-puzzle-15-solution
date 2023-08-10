@@ -8,7 +8,7 @@ DOTENV="$THIS_DIR/.env"
 if [ $# -ge 1 ]; then
    FLAGS=$@
 else
-   FLAGS="-vv"
+   FLAGS="-vvv"
 fi
 
 if [ "$EVMNET_FORK_URL" = "" ]; then

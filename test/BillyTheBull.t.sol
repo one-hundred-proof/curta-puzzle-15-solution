@@ -30,7 +30,7 @@ contract BillyTheBullTest is Test {
         level = BillyTheBull(0x9C48aE1Ae4C1a8BACcA3a52AEb22657FA0a52D3B);
     }
 
-    function testSolution() public {
+    function test100proofSolution() public {
         vm.createSelectFork(vm.envString("EVMNET_FORK_URL"), 17843232);
         bytes32 SALT = 0;
         CreationCodeProvider ccp = new CreationCodeProvider();
@@ -40,18 +40,6 @@ contract BillyTheBullTest is Test {
         Attack attack = new Attack{salt: SALT}(address(level), address(ccp));
         require(address(attack) == computedAddress, "Addresses not equal");
         require(keccak256(attack.justGetMagicFlag()) == keccak256(magicBytes), "magic bytes not the same");
-
-        // Work out tokenId1 and tokenId2
-        uint256 start = level.generate(address(this));
-        uint256 tokenId1 = start >> 128;
-        uint256 tokenId2 = uint256(uint128(start));
-
-        console.log("tokenId1 = %s , tokenId2 = %s", tokenId1, tokenId2);
-
-        // Calculate increment amount
-        uint256 incrementAmount = tokenId1 - level.nftPrice();
-        console.log("nftPrice =      = %s", level.nftPrice());
-        console.log("incrementAmount = %s", incrementAmount);
 
         curta.solve(15, uint256(solution));
     }
@@ -63,11 +51,7 @@ contract BillyTheBullTest is Test {
 
         level.verify(15677059489704813788781237196353174814172828311164112259534916405903994689373, 876945921415861996177457232047055113170687653836);
         IERC721(0xe5220446640A68693761e6e7429965D82db4c474).transferFrom(0x999B9d7980a2709000EdFA893d5557344EA477CC, 0x21E66240cC62AB55ce093af77084d007f35e5090, 46070737169132354891453603826207332189);
-        bool result = curta.solve(15, 82072898835053368733015234053518728118332065667604516339771390844112889335952);
-
-        // level.verify(start, 2070928960849307239422656736499557531883358129155233575738070712546523653510);
-        console.log("result = %s", result);
-
+        curta.solve(15, 82072898835053368733015234053518728118332065667604516339771390844112889335952);
     }
 
 
