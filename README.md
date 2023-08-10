@@ -12,8 +12,9 @@ Cumulatively, I spent nearly 12 hours on this puzzle and, because I started so l
 
 See Zach's walkthrough [here](https://twitter.com/zachobront/status/1688247687613743105). He says it better than I can.
 
-
 ## Running the PoC
+
+The PoC is written in Foundry (of course) and forks mainnet at block [17843232](https://etherscan.io/block/17843232) just before [jinu.eth solved the puzzle](https://etherscan.io/tx/0xb15ed92003e9ba354b1780d8b3e6db9c2e768f8209fe263979f0bcb33cc9b4e3).
 
 Create a `.env` file with something like:
 
