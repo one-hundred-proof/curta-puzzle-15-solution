@@ -1,13 +1,19 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
+import { IERC721 } from "../src/interfaces/IERC721.sol";
+
 import "forge-std/Test.sol";
-import "../src/BillyTheBull.sol";
-import "../src/Attack.sol";
-import "../src/CreationCodeProvider.sol";
+import { BillyTheBull } from "../src/BillyTheBull.sol";
+import { Attack } from "../src/Attack.sol";
+import { CreationCodeProvider } from "../src/CreationCodeProvider.sol";
 
 interface ICurta {
     function solve(uint32 _puzzleId, uint256 _solution) external returns (bool);
+}
+
+interface IFreeWilly {
+    function mint(uint tokenId) external;
 }
 
 contract BillyTheBullTest is Test {
@@ -16,9 +22,10 @@ contract BillyTheBullTest is Test {
     address player;
     ICurta curta = ICurta(0x0000000006bC8D9e5e9d436217B88De704a9F307);
 
+    IFreeWilly freeWilly = IFreeWilly(0xe5608a36489Fe45a8f08fD0c6B028801cE6B38d1);
+    IERC721 rippedJesus = IERC721(0xe5220446640A68693761e6e7429965D82db4c474);
+
     function setUp() public {
-
-
         player = address(this);
         level = BillyTheBull(0x9C48aE1Ae4C1a8BACcA3a52AEb22657FA0a52D3B);
     }
@@ -27,10 +34,10 @@ contract BillyTheBullTest is Test {
         vm.createSelectFork(vm.envString("EVMNET_FORK_URL"), 17843232);
         bytes32 SALT = 0;
         CreationCodeProvider ccp = new CreationCodeProvider();
-        bytes memory magicBytes = createMagicBytes(address(this), SALT, ccp.getAttackCreationCode() , abi.encode(address(level.nftOutlet()), address(ccp)));
+        bytes memory magicBytes = createMagicBytes(address(this), SALT, ccp.getAttackCreationCode() , abi.encode(address(level), address(ccp)));
         bytes32 solution = keccak256(magicBytes);
         address computedAddress = address(uint160(uint256(solution)));
-        Attack attack = new Attack{salt: SALT}(address(level.nftOutlet()), address(ccp));
+        Attack attack = new Attack{salt: SALT}(address(level), address(ccp));
         require(address(attack) == computedAddress, "Addresses not equal");
         require(keccak256(attack.justGetMagicFlag()) == keccak256(magicBytes), "magic bytes not the same");
 
