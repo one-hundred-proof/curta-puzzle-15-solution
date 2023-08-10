@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import { BillyTheBull } from "./BillyTheBull.sol";
-import { ERC20 } from "ERC20.sol";
+import { ERC20 } from "./ERC20.sol";
 import { IERC721 } from "./interfaces/IERC721.sol";
 
 contract NFTOutlet {
