@@ -25,3 +25,11 @@ Then
 ```
 $ ./run-forge.sh
 ```
+
+You'll see this at the end of the run. I still can't work out why. The `SolvePuzzle` event is correctly emitted by the Curta contract.
+
+```
+Failing tests:
+Encountered 1 failing test in test/BillyTheBull.t.sol:BillyTheBullTest
+[FAIL. Reason: ABI decoding: tuple data too short] test100proofSolution() (gas: 3161949)
+```
